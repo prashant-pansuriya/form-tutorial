@@ -1,0 +1,30 @@
+{% extends "app/base.html" %}
+{% block title %} Home Page {% endblock %}
+
+{% block body %}
+    <div class="container mt-3 pt-2 bg-light">
+        <h3 class="text-center mb-3">Customer Inquiry</h3>
+        {% include "app/message.html" %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                {% for field in form %}
+                    <div class="form-group col-sm-6 mb-2">
+                        {{ field.label_tag }}
+                        {% if field.field.required %} <span class="text-danger">*</span> {% endif %}
+                        {{ field }}
+                        {{ field.errors }}
+                        {% if field.help_text %}
+                            <p class="help mt-1">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-2">
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+

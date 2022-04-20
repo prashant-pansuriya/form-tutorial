@@ -1,0 +1,7 @@
+venv/
+**/migrations/**
+!**/migrations
+*.env
+.vscode/
+__pycache__/
+*.sqlite
